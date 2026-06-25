@@ -167,6 +167,9 @@
             .large-text-box { font-size: 24px; padding: 60px 0; max-width: min(90%, 1000px); }
         }
      </style>
+     <!-- Google tag (gtag.js) --> 
+     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18216260538"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-18216260538'); 
+     </script>
 </head>
 <body>
     <div class="smartphone">
@@ -214,17 +217,26 @@
     <script>
 "use strict"
 
-function setWhatsAppLink(phoneNumber){
+function isMobileDevice() {
     
-    const isMobileDevice = (typeof window.orientation != "undefined")
+    if (typeof window.orientation != "undefined") { return true }
 
-    const href = "https://" + (isMobileDevice ? "api" : "web") + 
+    if (! ("maxTouchPoints" in navigator)) { return false }
+    
+    return (navigator.maxTouchPoints > 0) 
+}
+
+function setWhatsAppLink(phoneNumber){
+
+    const href = "https://" + (isMobileDevice() ? "api" : "web") + 
     
     ".whatsapp.com/send?phone=" + phoneNumber + "&text=Ol%C3%A1%20Fati%20Faxinas!"
     
     document.getElementById("whatsapp-link").href = href
 }
+
 setWhatsAppLink("5551992699008")
+
     </script>
 </body>
 </html>
